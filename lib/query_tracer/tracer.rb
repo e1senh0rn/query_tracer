@@ -19,7 +19,7 @@ module QueryTracer
     ]
     # A regular expression used to skip certain code points (gems that do nothing
     # but add noice to the result).
-    EXCLUDE_CODEPOINT = %r{^(#{Rails.root}/(?:vendor/(?:rails|gems/(?:composite_primary_keys|db-charmer)|plugins/(?:paginating_find|acts_as_sluggable))|config/initializers/mysql_adapter_extensions\.rb|tmp/gems|lib/query_tracer))|\.rvm/rubies}
+    EXCLUDE_CODEPOINT = %r{^(#{Rails.root}/(?:vendor/(?:rails|gems/(?:composite_primary_keys|db-charmer)|plugins/(?:paginating_find|acts_as_sluggable))|config/initializers/mysql_adapter_extensions\.rb|tmp/gems|lib/query_tracer))|\.rvm/|/gems/}
     # A regular expression to exclude certain SQL queries from processing (who cares
     # where SHOW TABLES was issues from).
     EXCLUDE_SQL = []
