@@ -4,14 +4,14 @@ module QueryTracer
     module Revision
       # Detect the current code revision and memoize it for the future.
       def self.current
-        return nil unless QueryTracer::Configuration.show_revision
+        return nil unless QueryTracer.config.show_revision
         
         begin
           # Do we have the code revision memoized?
           unless defined?(@@current_code_revision)
-            @@current_code_revision = if File.exists?("#{Rails.root}/REVISION")
+            @@current_code_revision = if File.exists?("#{QueryTracer.config.root}/REVISION")
               # Capistrano-deployed application, we know where to get current revision
-              File.read("#{Rails.root}/REVISION").chomp.strip
+              File.read("#{QueryTracer.config.root}/REVISION").chomp.strip
             else
               # Try to use git
               rev = `git rev-parse HEAD 2>/dev/null`.chomp.strip
