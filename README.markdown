@@ -30,6 +30,10 @@ Add following code to config/initializers/query_tracer.rb:
     
 `exclude_queries` will contain default expressions list for currently selected DB.
 
+To set up `tracer.colorize` according to value of `config.colorize_logging` in your environment settings (`config/development.rb`) you could write
+
+    tracer.colorize = ActiveSupport::LogSubscriber.colorize_logging
+
 ## Example
 
 Let's say we have model
