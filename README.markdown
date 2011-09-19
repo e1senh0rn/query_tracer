@@ -23,7 +23,7 @@ Add following code to config/initializers/query_tracer.rb:
       tracer.colorize = true
       tracer.show_revision = true
       tracer.multiline = true
-      tracer.exclude_queries << %r{FROM sqlite_master}
+      tracer.exclude_sql << %r{FROM sqlite_master}
     end
 
     QueryTracer::Logger.attach_to :active_record
