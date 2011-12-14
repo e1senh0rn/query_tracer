@@ -10,9 +10,9 @@ module QueryTracer
       # Include only selected code points
       lines = []
       if QueryTracer.config.multiline
-        lines << caller.find {|line| include_line?(line)}
-      else
         caller.each {|line| lines << line if include_line?(line)}
+      else
+        lines << caller.find {|line| include_line?(line)}
       end
       
       unless lines.blank?
