@@ -13,16 +13,12 @@ module QueryTracer
       sql = event.payload[:sql]
       # Skip noisy queries
       trace = Tracer.build_trace(sql)
-      return if trace.blank?
-      # We're done
-      if QueryTracer.config.colorize
-        message = "\e[34m\e[43m^^^^ Called from:\e[0m "
-        indent = "\e[34m\e[43m->\e[0m "
-      else
-        message = '^^^^ Called from: '
-        indent = " "
+      unless trace.blank?
+        message = color("^^^^ Called from: ", YELLOW, true)
+        indent  = color("-> ", YELLOW, true)
+
+        send QueryTracer.config.log_level, message + trace.join("\n#{indent}")
       end
-      logger.send QueryTracer.config.log_level.to_sym, message + trace.join("\n#{indent}")
     end
   end
 end
