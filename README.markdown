@@ -20,19 +20,16 @@ Add following code to config/initializers/query_tracer.rb:
 
     QueryTracer.configure do |tracer|
       tracer.enabled = true
-      tracer.colorize = true
       tracer.show_revision = true
       tracer.multiline = true
       tracer.exclude_sql << %r{FROM sqlite_master}
     end
-
-    QueryTracer::Logger.attach_to :active_record
     
 `exclude_queries` will contain default expressions list for currently selected DB.
 
-To set up `tracer.colorize` according to value of `config.colorize_logging` in your environment settings (`config/development.rb`) you could write
+`tracer.colorize` will be set according to value of `config.colorize_logging` in your environment settings (`config/development.rb`).
 
-    tracer.colorize = ActiveSupport::LogSubscriber.colorize_logging
+You can find more options by inspecting `QueryTracer.config`.
 
 ## Example
 
